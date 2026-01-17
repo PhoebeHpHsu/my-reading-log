@@ -35,18 +35,27 @@
     </div>
 
     <script>
-        // ⚠️ 請在此填入你的 Google Apps Script 網址
-        const targetUrl = "https://script.google.com/macros/s/https://script.google.com/macros/s/AKfycbx0ko1FEtKAT68S8aas3aKacWoc5git7LHX0Ji_OYM/dev/exec";
+        // ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
+        // 請將剛才複製的網址貼在下方的雙引號中間
+        // 確保貼上後，開頭只有一個 "https://..."
+        
+        const targetUrl = "https://script.google.com/macros/s/AKfycbznzCesPuqd57BFHP3PC23W849BsjICDp4yA8rTQsgPTZzH9MHwmw4WuK3MEHRCa22D/exec";
+        
+        // ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
 
-        // 註冊 Service Worker (保留安裝功能)
+        // 註冊 Service Worker
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('./sw.js');
             });
         }
 
-        // 立即跳轉
-        window.location.replace(targetUrl);
+        // 執行跳轉
+        if (targetUrl && targetUrl.includes("http")) {
+             window.location.replace(targetUrl);
+        } else {
+             document.querySelector('.loader').innerHTML = "<h2>錯誤：網址尚未設定</h2>";
+        }
     </script>
 </body>
 </html>
